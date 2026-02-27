@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>1 año juntos ❤️</title>
+<link rel="icon" href="favicon.ico">
+
+<style>
+body{
+    margin:0;
+    background:black;
+    color:white;
+    text-align:center;
+    font-family:Arial;
+    overflow:hidden;
+}
+
+/* 🌌 Fondo estrellas */
+.estrellas{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    z-index:-1;
+}
+
+.estrellas span{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+    animation:parpadeo 2s infinite alternate;
+}
+
+@keyframes parpadeo{
+    from{opacity:0.2;}
+    to{opacity:1;}
+}
+
+/* Botón y flecha */
+button{
+    padding:15px 35px;
+    font-size:20px;
+    border:none;
+    border-radius:15px;
+    background:#ff4d6d;
+    color:white;
+    cursor:pointer;
+    margin-top:40px;
+}
+
+button:hover{
+    transform:scale(1.1);
+}
+
+.flecha{
+    position:fixed;
+    top:50%;
+    right:20px;
+    font-size:40px;
+    cursor:pointer;
+    user-select:none;
+    transition: transform 0.2s;
+}
+
+.flecha:hover{
+    transform: scale(1.2);
+}
+
+/* Texto */
+.mensaje{
+    width:80%;
+    max-width:500px;
+    margin:auto;
+    font-size:20px;
+    min-height:80px;
+}
+
+.contador{
+    margin-top:20px;
+    font-size:18px;
+    color:#ff9db5;
+}
+
+.corazon{
+    position:fixed;
+    font-size:25px;
+    animation:caer linear infinite;
+}
+
+@keyframes caer{
+    to{ transform:translateY(110vh); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="estrellas" id="estrellas"></div>
+
+<h1>Haz clic mi amor 💖</h1>
+<button onclick="activar()">Abrir sorpresa ✨</button>
+
+<audio id="musica" loop>
+<source src="cancion.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// 🌌 Crear estrellas iniciales
+crearEstrellas();
+
+function crearEstrellas(){
+    let contenedor=document.getElementById("estrellas");
+    contenedor.innerHTML="";
+    for(let i=0;i<150;i++){
+        let estrella=document.createElement("span");
+        estrella.style.left=Math.random()*100+"%";
+        estrella.style.top=Math.random()*100+"%";
+        estrella.style.animationDuration=(1+Math.random()*2)+"s";
+        contenedor.appendChild(estrella);
+    }
+}
+
+let paso=0; // Para controlar qué aparece
+function activar(){
+    let audio=document.getElementById("musica");
+    audio.play();
+
+    document.body.innerHTML=`
+    <div class="estrellas" id="estrellas"></div>
+    <h1>Te amo camiii ❤️</h1>
+    <div class="mensaje" id="texto"></div>
+    <div class="contador" id="contador"></div>
+    <div class="flecha" onclick="siguiente()">➡️</div>
+    `;
+
+    crearEstrellas();
+    efectoMaquina();
+    iniciarContador();
+}
+
+function efectoMaquina(){
+    let mensaje="Gracias por este año increíble conmigo 💘 Eres mi persona favorita en el mundo. Vamos por muchos años más juntos ✨";
+    let i=0;
+    let velocidad=40;
+
+    function escribir(){
+        if(i<mensaje.length){
+            document.getElementById("texto").innerHTML+=mensaje.charAt(i);
+            i++;
+            setTimeout(escribir,velocidad);
+        }
+    }
+    escribir();
+}
+
+function iniciarContador(){
+    let fechaInicio=new Date("2025-04-27"); // 🔥 CAMBIA ESTA FECHA
+
+    setInterval(()=>{
+        let ahora=new Date();
+        let diferencia=ahora-fechaInicio;
+
+        let dias=Math.floor(diferencia/(1000*60*60*24));
+        let horas=Math.floor((diferencia/(1000*60*60))%24);
+        let minutos=Math.floor((diferencia/(1000*60))%60);
+
+        document.getElementById("contador").innerHTML=
+        "Llevamos juntos 💖 "+dias+" días, "+horas+" horas y "+minutos+" minutos";
+    },1000);
+}
+
+function explosionCorazones(){
+    for(let i=0;i<30;i++){
+        let corazon=document.createElement("div");
+        corazon.innerHTML="❤️";
+        corazon.className="corazon";
+        corazon.style.left=Math.random()*100+"vw";
+        corazon.style.animationDuration=(2+Math.random()*3)+"s";
+        document.body.appendChild(corazon);
+    }
+}
+
+function siguiente(){
+    paso++;
+    const flecha=document.querySelector(".flecha"); // seleccionamos la flecha
+
+    if(paso==1){
+        let nuevoTexto=document.createElement("div");
+        nuevoTexto.className="mensaje";
+        document.body.appendChild(nuevoTexto);
+        escribirTexto("Cada momento contigo es mágico ✨ Te adoro infinitamente 💖", nuevoTexto);
+        explosionCorazones();
+    } else if(paso==2){
+        let nuevoTexto=document.createElement("div");
+        nuevoTexto.className="mensaje";
+        document.body.appendChild(nuevoTexto);
+        escribirTexto("Vamos por muchos más años juntos llenos de amor y aventuras 💘", nuevoTexto);
+        explosionCorazones();
+    } else if(paso>=3){
+        finalSorpresa();
+        if(flecha) flecha.style.display = "none"; // ❌ Ocultamos la flecha al final
+    }
+}
+
+function finalSorpresa(){
+    let nuevoTexto=document.createElement("div");
+    nuevoTexto.className="mensaje";
+    document.body.appendChild(nuevoTexto);
+    escribirTexto("❤️ Fin de la sorpresa... espera que te haya gustado 💖", nuevoTexto);
+    explosionCorazones();
+}
+
+function escribirTexto(texto, elemento){
+    let i=0;
+    let velocidad=40;
+    function escribir(){
+        if(i<texto.length){
+            elemento.innerHTML+=texto.charAt(i);
+            i++;
+            setTimeout(escribir,velocidad);
+        }
+    }
+    escribir();
+}
+</script>
+
+</body>
+</html>
