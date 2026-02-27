@@ -2,27 +2,36 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>9 Meses Juntos 💖</title>
+<title>9 Meses 💖</title>
 
 <style>
 body{
   margin:0;
-  font-family: Arial, sans-serif;
+  font-family:Arial, sans-serif;
   background:#ffe6f0;
-  overflow-x:hidden;
-  scroll-behavior:smooth;
+  overflow:hidden;
 }
 
-section{
+/* Secciones */
+.seccion{
+  display:none;
   height:100vh;
-  display:flex;
-  flex-direction:column;
+  width:100vw;
+  position:absolute;
+  top:0;
+  left:0;
   justify-content:center;
   align-items:center;
+  flex-direction:column;
   text-align:center;
   padding:20px;
 }
 
+.activa{
+  display:flex;
+}
+
+/* Botones */
 button{
   padding:12px 25px;
   margin:10px;
@@ -32,24 +41,6 @@ button{
   color:white;
   font-size:16px;
   cursor:pointer;
-  transition:0.3s;
-}
-
-button:hover{
-  background:#ff1a8c;
-  transform:scale(1.05);
-}
-
-/* Corazones */
-.heart{
-  position:fixed;
-  top:-20px;
-  color:#ff4da6;
-  animation:fall 5s linear infinite;
-}
-
-@keyframes fall{
-  to{ transform:translateY(100vh); opacity:0;}
 }
 
 /* Álbum */
@@ -57,34 +48,36 @@ button:hover{
   background:linear-gradient(135deg,#1a001f,#330033);
   flex-direction:row;
   justify-content:space-between;
-  align-items:center;
 }
 
-#fotosIzquierda, #fotosDerecha{
+.lado{
   display:flex;
   flex-direction:column;
   gap:20px;
+  padding:20px;
 }
 
-#fotosIzquierda img, #fotosDerecha img{
+.lado img{
   width:140px;
   border-radius:12px;
-  transition:0.4s;
-}
-
-#fotosIzquierda img:hover, #fotosDerecha img:hover{
-  transform:scale(1.1) rotate(0deg);
 }
 
 #textoCentral{
-  font-size:52px;
-  font-weight:bold;
+  font-size:42px;
   color:#ff66cc;
-  max-width:50%;
+  max-width:40%;
   line-height:1.4;
-  background:rgba(255,255,255,0.08);
-  padding:25px;
-  border-radius:20px;
+}
+
+/* Corazones */
+.heart{
+  position:fixed;
+  top:-20px;
+  animation:fall 5s linear infinite;
+}
+
+@keyframes fall{
+  to{ transform:translateY(100vh); opacity:0;}
 }
 </style>
 </head>
@@ -92,68 +85,85 @@ button:hover{
 <body>
 
 <!-- INICIO -->
-<section id="inicio">
+<div id="inicio" class="seccion activa">
   <h1>¡Sorpresa! 💖</h1>
   <p>
     Te amo mucho 💘<br>
     Ya cumplimos 9 meses juntos 💖<br>
     Y esto es solo el comienzo ✨
   </p>
-  <button onclick="irSeccion('mensaje')">Abrir Mensaje ✨</button>
-  <button onclick="irSeccion('album')">Ver Fotos 📸</button>
-</section>
+  <button onclick="mostrar('mensaje')">Abrir Mensaje ✨</button>
+  <button onclick="mostrar('album')">Ver Fotos 📸</button>
+</div>
 
-<!-- MENSAJE ANIMADO -->
-<section id="mensaje">
+<!-- MENSAJE -->
+<div id="mensaje" class="seccion">
   <p id="textoAnimado" style="font-size:24px;"></p>
-</section>
+  <button onclick="mostrar('album')">Ver Fotos 📸</button>
+</div>
 
-<!-- ÁLBUM -->
-<section id="album">
+<!-- ALBUM -->
+<div id="album" class="seccion">
 
-  <div id="fotosIzquierda">
-    <img src="capturas/foto1.png" style="transform:rotate(-8deg);">
-    <img src="capturas/foto3.png" style="transform:rotate(6deg);">
-    <img src="capturas/foto5.png" style="transform:rotate(-5deg);">
-    <img src="capturas/foto7.png" style="transform:rotate(7deg);">
+  <div class="lado">
+    <img src="capturas/foto1.png">
+    <img src="capturas/foto3.png">
+    <img src="capturas/foto5.png">
+    <img src="capturas/foto7.png">
   </div>
 
   <div id="textoCentral"></div>
 
-  <div id="fotosDerecha">
-    <img src="capturas/foto2.png" style="transform:rotate(8deg);">
-    <img src="capturas/foto4.png" style="transform:rotate(-6deg);">
-    <img src="capturas/foto6.png" style="transform:rotate(5deg);">
-    <img src="capturas/foto8.png" style="transform:rotate(-7deg);">
+  <div class="lado">
+    <img src="capturas/foto2.png">
+    <img src="capturas/foto4.png">
+    <img src="capturas/foto6.png">
+    <img src="capturas/foto8.png">
   </div>
 
-</section>
+</div>
 
 <script>
-function irSeccion(id){
-  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+
+/* Cambiar secciones */
+function mostrar(id){
+  document.querySelectorAll('.seccion').forEach(s=>s.classList.remove('activa'));
+  document.getElementById(id).classList.add('activa');
+
+  if(id==="mensaje") escribirMensaje();
+  if(id==="album") escribirCentral();
 }
 
-/* Texto animado 9 meses */
-const mensaje9 = "Han pasado 9 meses desde que empezamos esta historia... y cada día contigo ha sido algo que jamás imaginé sentir. Gracias por cada risa, cada momento, cada mirada y cada recuerdo que hemos creado juntos 💖";
+/* Texto mensaje */
+const mensaje9="Han pasado 9 meses desde que empezamos esta historia... y cada día contigo ha sido algo que jamás imaginé sentir. Gracias por cada risa, cada momento, cada mirada y cada recuerdo que hemos creado juntos 💖";
 let i=0;
 function escribirMensaje(){
-  if(i<mensaje9.length){
-    document.getElementById("textoAnimado").innerHTML+=mensaje9.charAt(i);
-    i++;
-    setTimeout(escribirMensaje,50);
+  document.getElementById("textoAnimado").innerHTML="";
+  i=0;
+  function escribir(){
+    if(i<mensaje9.length){
+      document.getElementById("textoAnimado").innerHTML+=mensaje9.charAt(i);
+      i++;
+      setTimeout(escribir,40);
+    }
   }
+  escribir();
 }
 
 /* Texto central largo */
-const textoLargo = "Desde que llegaste a mi vida, todo cambió. No sé cómo explicarlo exactamente, pero contigo aprendí lo que significa querer de verdad. Me haces sentir paz, emoción, ilusión y ganas de seguir construyendo algo más grande cada día. No importa el tiempo que pase, ni las dificultades que aparezcan, porque si es contigo, siempre vale la pena. Gracias por existir, por ser tú, por tu sonrisa, por tu mirada y por cada pequeño detalle que me regalas sin darte cuenta. Estos 9 meses son solo el inicio de algo mucho más grande… y quiero seguir escribiendo esta historia contigo 💖✨";
+const textoLargo="Desde que llegaste a mi vida, todo cambió. No sé cómo explicarlo exactamente, pero contigo aprendí lo que significa querer de verdad. Me haces sentir paz, emoción, ilusión y ganas de seguir construyendo algo más grande cada día. No importa el tiempo que pase, porque si es contigo, siempre vale la pena. Estos 9 meses son solo el inicio de algo mucho más grande… y quiero seguir escribiendo esta historia contigo 💖✨";
 let j=0;
 function escribirCentral(){
-  if(j<textoLargo.length){
-    document.getElementById("textoCentral").innerHTML+=textoLargo.charAt(j);
-    j++;
-    setTimeout(escribirCentral,30);
+  document.getElementById("textoCentral").innerHTML="";
+  j=0;
+  function escribir(){
+    if(j<textoLargo.length){
+      document.getElementById("textoCentral").innerHTML+=textoLargo.charAt(j);
+      j++;
+      setTimeout(escribir,25);
+    }
   }
+  escribir();
 }
 
 /* Corazones */
@@ -168,11 +178,8 @@ function crearCorazon(){
 }
 setInterval(crearCorazon,400);
 
-window.onload=function(){
-  escribirMensaje();
-  escribirCentral();
-}
 </script>
 
 </body>
 </html>
+
