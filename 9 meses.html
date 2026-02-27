@@ -2,160 +2,175 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>9 Meses Juntos</title>
+<title>9 Meses Juntos 💖</title>
+
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background: #ffe6f0;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-  }
-  #sorpresa, #album, #botonImagenes { display: none; margin-top: 20px; }
-  img { border-radius: 10px; transition: transform 0.5s; }
-  button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    background: #ff6699;
-    border: none;
-    color: white;
-  }
-  .heart {
-    position: fixed;
-    color: #ff4da6;
-    font-size: 24px;
-    animation: fall 5s linear infinite;
-    user-select: none;
-  }
-  @keyframes fall {
-    0% { transform: translateY(-50px); opacity: 1; }
-    100% { transform: translateY(100vh); opacity: 0; }
-  }
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:#ffe6f0;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
+}
 
-  /* Álbum de fotos */
-  .album {
-    display: none;
-    position: relative;
-    height: 100vh;
-    background: #ffe6f0;
-  }
-  .album img {
-    width: 200px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform-origin: center;
-  }
-  .album img:hover { transform: scale(1.1) rotate(0deg); }
+section{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
 
-  /* Texto central en el álbum */
-  .album #textoCentral {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 36px;
-    color: #ff0066;
-    background: rgba(255,255,255,0.6);
-    padding: 20px;
-    border-radius: 15px;
-    width: 80%;
-    line-height: 1.5;
-  }
+button{
+  padding:12px 25px;
+  margin:10px;
+  border:none;
+  border-radius:8px;
+  background:#ff4da6;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  background:#ff1a8c;
+  transform:scale(1.05);
+}
+
+/* Corazones */
+.heart{
+  position:fixed;
+  top:-20px;
+  color:#ff4da6;
+  animation:fall 5s linear infinite;
+}
+
+@keyframes fall{
+  to{ transform:translateY(100vh); opacity:0;}
+}
+
+/* Álbum */
+#album{
+  background:linear-gradient(135deg,#1a001f,#330033);
+  flex-direction:row;
+  justify-content:space-between;
+  align-items:center;
+}
+
+#fotosIzquierda, #fotosDerecha{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+#fotosIzquierda img, #fotosDerecha img{
+  width:140px;
+  border-radius:12px;
+  transition:0.4s;
+}
+
+#fotosIzquierda img:hover, #fotosDerecha img:hover{
+  transform:scale(1.1) rotate(0deg);
+}
+
+#textoCentral{
+  font-size:52px;
+  font-weight:bold;
+  color:#ff66cc;
+  max-width:50%;
+  line-height:1.4;
+  background:rgba(255,255,255,0.08);
+  padding:25px;
+  border-radius:20px;
+}
 </style>
 </head>
+
 <body>
 
-<h1>¡Ya 9 meses juntos! 💖</h1>
-<p>Desde el 27/05/2025</p>
+<!-- INICIO -->
+<section id="inicio">
+  <h1>¡Sorpresa! 💖</h1>
+  <p>
+    Te amo mucho 💘<br>
+    Ya cumplimos 9 meses juntos 💖<br>
+    Y esto es solo el comienzo ✨
+  </p>
+  <button onclick="irSeccion('mensaje')">Abrir Mensaje ✨</button>
+  <button onclick="irSeccion('album')">Ver Fotos 📸</button>
+</section>
 
-<button onclick="mostrarSorpresa()">Abrir Sorpresa ✨</button>
+<!-- MENSAJE ANIMADO -->
+<section id="mensaje">
+  <p id="textoAnimado" style="font-size:24px;"></p>
+</section>
 
-<div id="sorpresa">
-  <p id="mensaje"></p>
-  <div id="botonImagenes">
-    <button onclick="mostrarAlbum()">Ver tus fotos 📸</button>
+<!-- ÁLBUM -->
+<section id="album">
+
+  <div id="fotosIzquierda">
+    <img src="capturas/foto1.png" style="transform:rotate(-8deg);">
+    <img src="capturas/foto3.png" style="transform:rotate(6deg);">
+    <img src="capturas/foto5.png" style="transform:rotate(-5deg);">
+    <img src="capturas/foto7.png" style="transform:rotate(7deg);">
   </div>
-</div>
 
-<div class="album" id="album">
   <div id="textoCentral"></div>
-  <img src="capturas/foto1.png" alt="Foto 1">
-  <img src="capturas/foto2.png" alt="Foto 2">
-  <img src="capturas/foto3.png" alt="Foto 3">
-  <img src="capturas/foto4.png" alt="Foto 4">
-  <img src="capturas/foto5.png" alt="Foto 5">
-  <img src="capturas/foto6.png" alt="Foto 6">
-  <img src="capturas/foto7.png" alt="Foto 7">
-  <img src="capturas/foto8.png" alt="Foto 8">
-</div>
+
+  <div id="fotosDerecha">
+    <img src="capturas/foto2.png" style="transform:rotate(8deg);">
+    <img src="capturas/foto4.png" style="transform:rotate(-6deg);">
+    <img src="capturas/foto6.png" style="transform:rotate(5deg);">
+    <img src="capturas/foto8.png" style="transform:rotate(-7deg);">
+  </div>
+
+</section>
 
 <script>
-// Texto que se escribe letra por letra
-const texto = "Te amo mucho 💘\nYa cumplimos otro mes más 💖";
-let i = 0;
-function escribirTexto() {
-  if(i < texto.length){
-    document.getElementById("mensaje").innerHTML += texto.charAt(i);
+function irSeccion(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+
+/* Texto animado 9 meses */
+const mensaje9 = "Han pasado 9 meses desde que empezamos esta historia... y cada día contigo ha sido algo que jamás imaginé sentir. Gracias por cada risa, cada momento, cada mirada y cada recuerdo que hemos creado juntos 💖";
+let i=0;
+function escribirMensaje(){
+  if(i<mensaje9.length){
+    document.getElementById("textoAnimado").innerHTML+=mensaje9.charAt(i);
     i++;
-    setTimeout(escribirTexto, 100);
-  } else {
-    document.getElementById('botonImagenes').style.display = 'block';
+    setTimeout(escribirMensaje,50);
   }
 }
 
-function mostrarSorpresa() {
-  document.getElementById('sorpresa').style.display = 'block';
-  escribirTexto();
-  iniciarCorazones();
-}
-
-// Mostrar álbum con fotos aleatorias y texto central que se escribe
-function mostrarAlbum() {
-  const album = document.getElementById('album');
-  album.style.display = 'block';
-  album.scrollIntoView({ behavior: 'smooth' });
-
-  // Distribución aleatoria de las fotos
-  const imgs = album.querySelectorAll('img');
-  imgs.forEach(img => {
-    const x = Math.random() * 400 - 200; // -200 a +200
-    const y = Math.random() * 400 - 200;
-    const rot = Math.random() * 30 - 15; // -15 a +15 grados
-    img.style.transform = `translate(${x}px,${y}px) rotate(${rot}deg)`;
-  });
-
-  // Texto central letra por letra
-  const textoCentral = "Todo lo que siento por vos no cabe en palabras… te amo con todo mi corazón 💖";
-  let j = 0;
-  const txtDiv = document.getElementById('textoCentral');
-  txtDiv.innerHTML = '';
-  function escribirCentral() {
-    if(j < textoCentral.length){
-      txtDiv.innerHTML += textoCentral.charAt(j);
-      j++;
-      setTimeout(escribirCentral, 60);
-    }
+/* Texto central largo */
+const textoLargo = "Desde que llegaste a mi vida, todo cambió. No sé cómo explicarlo exactamente, pero contigo aprendí lo que significa querer de verdad. Me haces sentir paz, emoción, ilusión y ganas de seguir construyendo algo más grande cada día. No importa el tiempo que pase, ni las dificultades que aparezcan, porque si es contigo, siempre vale la pena. Gracias por existir, por ser tú, por tu sonrisa, por tu mirada y por cada pequeño detalle que me regalas sin darte cuenta. Estos 9 meses son solo el inicio de algo mucho más grande… y quiero seguir escribiendo esta historia contigo 💖✨";
+let j=0;
+function escribirCentral(){
+  if(j<textoLargo.length){
+    document.getElementById("textoCentral").innerHTML+=textoLargo.charAt(j);
+    j++;
+    setTimeout(escribirCentral,30);
   }
-  escribirCentral();
 }
 
-// Corazones cayendo
-function crearCorazon() {
-  const heart = document.createElement('div');
-  heart.className = 'heart';
-  heart.style.left = Math.random() * window.innerWidth + 'px';
-  heart.style.fontSize = (14 + Math.random() * 20) + 'px';
-  heart.innerHTML = '💖';
+/* Corazones */
+function crearCorazon(){
+  const heart=document.createElement("div");
+  heart.className="heart";
+  heart.style.left=Math.random()*100+"vw";
+  heart.innerHTML="💖";
+  heart.style.fontSize=(15+Math.random()*20)+"px";
   document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 5000);
+  setTimeout(()=>heart.remove(),5000);
 }
+setInterval(crearCorazon,400);
 
-function iniciarCorazones() {
-  setInterval(crearCorazon, 500);
+window.onload=function(){
+  escribirMensaje();
+  escribirCentral();
 }
 </script>
 
