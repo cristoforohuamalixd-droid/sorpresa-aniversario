@@ -1,69 +1,55 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>9 Meses 💖</title>
 
 <style>
-
 body{
   margin:0;
   font-family:Arial, sans-serif;
   background:#ffe6f0;
-  scroll-behavior:smooth;
+  overflow:hidden;
 }
 
 .seccion{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
+  display:none;
+  height:100vh;
+  width:100%;
   justify-content:center;
   align-items:center;
+  flex-direction:column;
   text-align:center;
-  padding:40px;
+  padding:20px;
 }
 
-#inicio{
-  background:linear-gradient(135deg,#ff99cc,#ff66cc);
-  color:white;
-}
-
-#mensaje{
-  background:#fff0f5;
-  color:#cc0066;
-}
-
-#album{
-  background:linear-gradient(135deg,#1a001f,#330033);
+.activa{
   display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:40px;
-  overflow-y:auto;
 }
 
 button{
-  padding:15px 30px;
-  margin:10px;
+  padding:12px 25px;
+  font-size:18px;
   border:none;
-  border-radius:30px;
-  background:white;
-  color:#ff3399;
-  font-weight:bold;
+  border-radius:25px;
+  background:#ff4da6;
+  color:white;
   cursor:pointer;
+  margin-top:20px;
   transition:0.3s;
 }
 
 button:hover{
-  transform:scale(1.1);
+  background:#ff1a8c;
 }
 
-#textoCentral{
-  font-size:34px;
-  color:#ff66cc;
-  max-width:40%;
-  line-height:1.6;
+/* SECCIÓN ÁLBUM */
+
+#album{
+  background:linear-gradient(135deg,#1a001f,#330033);
+  flex-direction:row;
+  justify-content:space-between;
+  overflow-y:auto;
 }
 
 .lado{
@@ -73,86 +59,74 @@ button:hover{
 }
 
 .lado img{
-  width:130px;
-  border-radius:20px;
-  transform:rotate(-6deg);
-  box-shadow:0 10px 25px rgba(0,0,0,0.5);
+  width:150px;
+  border-radius:15px;
+  transform:rotate(-8deg);
+  box-shadow:0 0 15px #ff4da6;
 }
 
 .lado img:nth-child(even){
-  transform:rotate(6deg);
+  transform:rotate(8deg);
 }
 
-@media (max-width:768px){
+#textoCentral{
+  font-size:38px;
+  color:#ff66cc;
+  max-width:40%;
+  line-height:1.6;
+}
 
+/* RESPONSIVE */
+
+@media (max-width: 768px){
   #album{
     flex-direction:column;
+    align-items:center;
   }
 
   #textoCentral{
     max-width:90%;
     font-size:24px;
-    margin:30px 0;
-  }
-
-  .lado{
-    flex-direction:row;
-    flex-wrap:wrap;
-    justify-content:center;
   }
 
   .lado img{
-    width:100px;
+    width:110px;
   }
 }
 
 </style>
 </head>
+
 <body>
 
-<!-- INICIO -->
-<section id="inicio" class="seccion">
+<!-- PANTALLA INICIAL -->
+<div id="inicio" class="seccion activa">
   <h1>¡Sorpresa! 💖</h1>
-  <h2>Te amo mucho 💘</h2>
-  <h2>Ya cumplimos 9 meses juntos 💖</h2>
-  <p>Y esto es solo el comienzo ✨</p>
-
-  <button onclick="irA('mensaje')">Abrir Mensaje ✨</button>
-  <button onclick="irA('album')">Ver Fotos 📸</button>
-</section>
+  <p>Ya cumplimos 9 meses juntos 💘</p>
+  <button onclick="mostrar('mensaje')">Abrir Mensaje ✨</button>
+</div>
 
 <!-- MENSAJE -->
-<section id="mensaje" class="seccion">
-  <h2>Han pasado 9 meses desde que empezamos esta historia...</h2>
+<div id="mensaje" class="seccion">
+  <h2>Han pasado 9 meses desde que empezó todo...</h2>
 
-  <p style="max-width:700px;">
-  Cada día contigo ha sido algo que jamás imaginé sentir.
-  Gracias por cada risa, cada momento, cada mirada y cada recuerdo que hemos creado juntos 💖
-  </p>
-
-  <p style="max-width:700px;">
-  Desde que llegaste a mi vida, todo cambió. No sé cómo explicarlo exactamente,
-  pero contigo aprendí lo que significa querer de verdad.
+  <p style="max-width:700px; line-height:1.6;">
+  Desde que llegaste a mi vida todo cambió. 
+  Contigo aprendí lo que significa querer de verdad.
   Me haces sentir paz, emoción, ilusión y ganas de seguir construyendo algo más grande cada día.
-  </p>
-
-  <p style="max-width:700px;">
-  No importa el tiempo que pase, ni las dificultades que aparezcan,
+  No importa el tiempo que pase ni las dificultades que aparezcan,
   porque si es contigo, siempre vale la pena.
-  Gracias por existir, por ser tú, por tu sonrisa,
-  por tu mirada y por cada pequeño detalle que me regalas sin darte cuenta.
-  </p>
-
-  <p style="max-width:700px; font-weight:bold;">
-  Estos 9 meses son solo el inicio de algo mucho más grande…
+  Gracias por tu sonrisa, por tu mirada,
+  por cada detalle pequeño que para mí significa todo.
+  Estos 9 meses son solo el comienzo,
   y quiero seguir escribiendo esta historia contigo 💖✨
   </p>
 
-  <button onclick="irA('album')">Ir a las fotos 📸</button>
-</section>
+  <button onclick="mostrar('album')">Ver Fotos 📸</button>
+</div>
 
 <!-- ÁLBUM -->
-<section id="album">
+<div id="album" class="seccion">
 
   <div class="lado">
     <img src="./capturas/foto1.png">
@@ -162,11 +136,10 @@ button:hover{
   </div>
 
   <div id="textoCentral">
-    Eres una de las cosas más bonitas que me ha pasado.
-    No sé qué nos depare el futuro,
-    pero si es contigo, lo quiero todo.
-    Gracias por estos 9 meses llenos de emociones,
-    aprendizajes y recuerdos que guardo en el corazón.
+    No son solo fotos…  
+    son momentos, recuerdos, risas, miradas y sentimientos que no se explican con palabras.  
+    Cada imagen es una parte de esta historia que estamos construyendo juntos.  
+    Gracias por estos 9 meses increíbles 💖✨
   </div>
 
   <div class="lado">
@@ -176,11 +149,15 @@ button:hover{
     <img src="./capturas/foto8.png">
   </div>
 
-</section>
+</div>
 
 <script>
-function irA(id){
-  document.getElementById(id).scrollIntoView({behavior:"smooth"});
+function mostrar(id){
+  document.querySelectorAll('.seccion').forEach(sec=>{
+    sec.classList.remove('activa');
+  });
+
+  document.getElementById(id).classList.add('activa');
 }
 </script>
 
