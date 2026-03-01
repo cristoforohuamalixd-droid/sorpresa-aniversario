@@ -2,79 +2,159 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>9 Meses 💖</title>
 
 <style>
-body {
-    margin: 0;
-    background: #3b003b;
+
+/* ===== GENERAL ===== */
+body{
+    margin:0;
     font-family: Arial, Helvetica, sans-serif;
-    overflow-x: hidden;
+    background:#3b003b;
+    color:#ff66cc;
+    overflow-x:hidden;
 }
 
-/* CONTENEDOR GENERAL */
-.container {
-    display: flex;
-    align-items: flex-start;
-    padding: 60px;
+section{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:40px;
 }
 
-/* TEXTO */
-.texto {
-    width: 40%;              /* MÁS ANGOSTO */
-    color: #ff4da6;
-    font-size: 20px;         /* Un poco más chico */
-    line-height: 1.6;
+/* ===== BOTONES ===== */
+button{
+    background:#ff4da6;
+    border:none;
+    padding:15px 28px;
+    margin:10px;
+    font-size:18px;
+    border-radius:30px;
+    cursor:pointer;
+    color:white;
+    transition:0.3s;
 }
 
-/* IMÁGENES */
-.imagenes {
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 30px;
-    padding-left: 40px;
+button:hover{
+    background:#ff1a8c;
+    transform:scale(1.05);
 }
 
-.imagenes img {
-    width: 180px;
-    border-radius: 20px;
-    box-shadow: 0 0 20px #ff4da6;
-    transform: rotate(-8deg);
-    transition: 0.3s;
+/* ===== MENSAJE ===== */
+#mensaje p{
+    max-width:700px;
+    font-size:19px;
+    line-height:1.7;
 }
 
-.imagenes img:hover {
-    transform: rotate(0deg) scale(1.05);
+/* ===== GALERIA ===== */
+.galeria{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    width:100%;
+    max-width:900px;
+    margin-top:30px;
 }
+
+.galeria img{
+    width:100%;
+    height:260px;
+    object-fit:cover;
+    border-radius:20px;
+    box-shadow:0 0 20px #ff4da6;
+    transition:0.3s;
+}
+
+.galeria img:hover{
+    transform:scale(1.05);
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<!-- ===== INICIO ===== -->
+<section id="inicio">
 
-    <div class="texto">
-        <p>
-        No son solo fotos… eres tú, siendo la persona más hermosa que existe. 
-        Cada imagen tuya me recuerda lo afortunado que soy de tenerte en mi vida. 
-        Tu sonrisa, tu mirada, tu forma de ser… todo en ti me hace sentir algo que no puedo explicar fácilmente.
-        <br><br>
-        Gracias por estos 9 meses increíbles. 
-        Lo que siento por ti es real, profundo y cada día crece más. 
-        Quiero seguir construyendo esta historia contigo, cuidándote, apoyándote y amándote siempre. 💖✨
-        </p>
-    </div>
+<h1>¡Sorpresa! 💖</h1>
+<h2>Te amo mucho 💘</h2>
+<h3>Ya cumplimos 9 meses juntos 💖</h3>
+<p>Y esto es solo el comienzo ✨</p>
 
-    <div class="imagenes">
-        <img src="foto1.jpg">
-        <img src="foto2.jpg">
-        <img src="foto3.jpg">
-        <img src="foto4.jpg">
-    </div>
+<button onclick="ir('mensaje')">Abrir Mensaje ✨</button>
+<button onclick="ir('fotos')">Ver Fotos 📸</button>
+
+</section>
+
+
+<!-- ===== MENSAJE ===== -->
+<section id="mensaje">
+
+<h2>Para ti 💌</h2>
+
+<p>
+No son solo fotos… eres tú, siendo la persona más increíble que existe.
+Cada imagen tuya me recuerda lo afortunado que soy de tenerte en mi vida.
+Tu sonrisa ilumina mis días, tu mirada me da paz y tu forma de ser me
+enamora cada vez más sin que pueda evitarlo.
+
+<br><br>
+
+Desde que llegaste todo cambió. Contigo aprendí lo que significa querer
+de verdad, sentir algo sincero y profundo. Me haces sentir tranquilidad,
+emoción y ganas de seguir construyendo algo bonito juntos.
+
+<br><br>
+
+Gracias por estos 9 meses tan especiales. Lo que siento por ti no es algo
+pasajero, es algo real que crece cada día más. Quiero seguir acompañándote,
+apoyándote y demostrándote siempre lo importante que eres para mí.
+
+<br><br>
+
+Esto apenas empieza… y quiero seguir escribiendo esta historia contigo 💖✨
+</p>
+
+<button onclick="ir('inicio')">Volver 💕</button>
+
+</section>
+
+
+<!-- ===== FOTOS ===== -->
+<section id="fotos">
+
+<h2>Ella 💖</h2>
+
+<div class="galeria">
+
+<img src="capturas/foto1.png">
+<img src="capturas/foto2.png">
+<img src="capturas/foto3.png">
+<img src="capturas/foto4.png">
+<img src="capturas/foto5.png">
+<img src="capturas/foto6.png">
+<img src="capturas/foto7.png">
+<img src="capturas/foto8.png">
 
 </div>
+
+<button onclick="ir('inicio')">Volver 💕</button>
+
+</section>
+
+
+<script>
+function ir(seccion){
+    document.getElementById(seccion)
+    .scrollIntoView({behavior:"smooth"});
+}
+</script>
 
 </body>
 </html>
