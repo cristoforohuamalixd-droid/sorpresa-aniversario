@@ -1,165 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <title>9 Meses 💖</title>
 
 <style>
-body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:#ffe6f0;
-  overflow:hidden;
+body {
+    margin: 0;
+    background: #3b003b;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
 }
 
-.seccion{
-  display:none;
-  height:100vh;
-  width:100%;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  text-align:center;
-  padding:20px;
+/* CONTENEDOR GENERAL */
+.container {
+    display: flex;
+    align-items: flex-start;
+    padding: 60px;
 }
 
-.activa{
-  display:flex;
+/* TEXTO */
+.texto {
+    width: 40%;              /* MÁS ANGOSTO */
+    color: #ff4da6;
+    font-size: 20px;         /* Un poco más chico */
+    line-height: 1.6;
 }
 
-button{
-  padding:12px 25px;
-  font-size:18px;
-  border:none;
-  border-radius:25px;
-  background:#ff4da6;
-  color:white;
-  cursor:pointer;
-  margin-top:20px;
-  transition:0.3s;
+/* IMÁGENES */
+.imagenes {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+    padding-left: 40px;
 }
 
-button:hover{
-  background:#ff1a8c;
+.imagenes img {
+    width: 180px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px #ff4da6;
+    transform: rotate(-8deg);
+    transition: 0.3s;
 }
 
-/* SECCIÓN ÁLBUM */
-
-#album{
-  background:linear-gradient(135deg,#1a001f,#330033);
-  flex-direction:row;
-  justify-content:space-between;
-  overflow-y:auto;
+.imagenes img:hover {
+    transform: rotate(0deg) scale(1.05);
 }
-
-.lado{
-  display:flex;
-  flex-direction:column;
-  gap:20px;
-}
-
-.lado img{
-  width:150px;
-  border-radius:15px;
-  transform:rotate(-8deg);
-  box-shadow:0 0 15px #ff4da6;
-}
-
-.lado img:nth-child(even){
-  transform:rotate(8deg);
-}
-
-#textoCentral{
-  font-size:38px;
-  color:#ff66cc;
-  max-width:40%;
-  line-height:1.6;
-}
-
-/* RESPONSIVE */
-
-@media (max-width: 768px){
-  #album{
-    flex-direction:column;
-    align-items:center;
-  }
-
-  #textoCentral{
-    max-width:90%;
-    font-size:24px;
-  }
-
-  .lado img{
-    width:110px;
-  }
-}
-
 </style>
 </head>
 
 <body>
 
-<!-- PANTALLA INICIAL -->
-<div id="inicio" class="seccion activa">
-  <h1>¡Sorpresa! 💖</h1>
-  <p>Ya cumplimos 9 meses juntos 💘</p>
-  <button onclick="mostrar('mensaje')">Abrir Mensaje ✨</button>
-</div>
+<div class="container">
 
-<!-- MENSAJE -->
-<div id="mensaje" class="seccion">
-  <h2>Han pasado 9 meses desde que empezó todo...</h2>
+    <div class="texto">
+        <p>
+        No son solo fotos… eres tú, siendo la persona más hermosa que existe. 
+        Cada imagen tuya me recuerda lo afortunado que soy de tenerte en mi vida. 
+        Tu sonrisa, tu mirada, tu forma de ser… todo en ti me hace sentir algo que no puedo explicar fácilmente.
+        <br><br>
+        Gracias por estos 9 meses increíbles. 
+        Lo que siento por ti es real, profundo y cada día crece más. 
+        Quiero seguir construyendo esta historia contigo, cuidándote, apoyándote y amándote siempre. 💖✨
+        </p>
+    </div>
 
-  <p style="max-width:700px; line-height:1.6;">
-  Desde que llegaste a mi vida todo cambió. 
-  Contigo aprendí lo que significa querer de verdad.
-  Me haces sentir paz, emoción, ilusión y ganas de seguir construyendo algo más grande cada día.
-  No importa el tiempo que pase ni las dificultades que aparezcan,
-  porque si es contigo, siempre vale la pena.
-  Gracias por tu sonrisa, por tu mirada,
-  por cada detalle pequeño que para mí significa todo.
-  Estos 9 meses son solo el comienzo,
-  y quiero seguir escribiendo esta historia contigo 💖✨
-  </p>
-
-  <button onclick="mostrar('album')">Ver Fotos 📸</button>
-</div>
-
-<!-- ÁLBUM -->
-<div id="album" class="seccion">
-
-  <div class="lado">
-    <img src="./capturas/foto1.png">
-    <img src="./capturas/foto2.png">
-    <img src="./capturas/foto3.png">
-    <img src="./capturas/foto4.png">
-  </div>
-
-  <div id="textoCentral">
-    No son solo fotos…  
-    son momentos, recuerdos, risas, miradas y sentimientos que no se explican con palabras.  
-    Cada imagen es una parte de esta historia que estamos construyendo juntos.  
-    Gracias por estos 9 meses increíbles 💖✨
-  </div>
-
-  <div class="lado">
-    <img src="./capturas/foto5.png">
-    <img src="./capturas/foto6.png">
-    <img src="./capturas/foto7.png">
-    <img src="./capturas/foto8.png">
-  </div>
+    <div class="imagenes">
+        <img src="foto1.jpg">
+        <img src="foto2.jpg">
+        <img src="foto3.jpg">
+        <img src="foto4.jpg">
+    </div>
 
 </div>
-
-<script>
-function mostrar(id){
-  document.querySelectorAll('.seccion').forEach(sec=>{
-    sec.classList.remove('activa');
-  });
-
-  document.getElementById(id).classList.add('activa');
-}
-</script>
 
 </body>
 </html>
